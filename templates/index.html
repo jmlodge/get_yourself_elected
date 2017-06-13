@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Get Yourself Elected</title>
-    <link rel="stylesheet" href="{{ url_for ('static',
-         filename='lib/css/bootstrap.min.css')}}">
-   <link rel="stylesheet" href="{{ url_for ('static',
-         filename='lib/css/keen-dashboards.css')}}">
-   <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
-   <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
 </head>
 <body class="application" id="bod">
 
@@ -29,20 +27,12 @@
 
    <div class="row">
 
+       <--! single column on small device-->
        <div class="col-sm-12">
+
+           <!-- row 1 -->
            <div class="row">
 
-               <!-- Time Chart -->
-               <div class="col-sm-6">
-                   <div class="chart-wrapper">
-                       <div class="chart-title title-background">
-                           Number of Donations
-                       </div>
-                       <div class="chart-stage chart-background">
-                           <div id="time-chart"></div>
-                       </div>
-                   </div>
-               </div>
                <!-- menu select -->
                 <div class="col-sm-6">
                     <div class="chart-wrapper">
@@ -55,7 +45,22 @@
                     </div>
                 </div>
                 <!-- menu select -->
-               <div class="row">
+
+               <div class="col-sm-6">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Total Donations in USD
+                       </div>
+                       <div class="chart-stage metric-background">
+                           <div id="total-donations-nd"></div>
+                       </div>
+                   </div>
+                </div>
+           </div>
+           <!-- row 1 close-->
+
+           <!-- row 2 -->
+           <div class="row">
                <!-- Resources -->
                <div class="col-sm-4">
                    <div class="chart-wrapper">
@@ -94,9 +99,27 @@
                    </div>
                 </div>
                 <!-- Primary Focus Subject -->
+           </div>
+           <!-- row 2 close-->
+
+           <!-- row 3-->
+           <div class="row">
+
+                <!-- Time Chart -->
+               <div class="col-sm-6">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Number of Donations
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="time-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- Time Chart -->
 
                 <!-- Poverty -->
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background">
                            Poverty Level
@@ -108,6 +131,7 @@
                 </div>
                 <!-- Poverty -->
            </div>
+            <!-- row 3 close-->
 
            </div>
        </div>
