@@ -81,7 +81,7 @@ function makeGraphs(error, projectsJson) {
         .dimension(cityDim)
         .group(cityGroup);
 
-    var colourScale = d3.scale.ordinal().range(["#ffe4b2", "#ffc966", "#ffa500", "#cc8400", "#996300"]);
+    var colourScale = d3.scale.ordinal().range(["#BED661", "#89E894", "#78D5E3", "#7AF5F5", "#34DDDD", "#93E2D5"]);
 
     numberProjectsND
        .formatNumber(d3.format("d"))

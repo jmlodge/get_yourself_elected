@@ -17,11 +17,16 @@ div.chart-stage.select-stage{
     align-items: center;
 }
 
+div.chart-stage.chart-background{
+    background: rgba(28, 99, 42, 0.3);
+}
+
 .chart-stage{
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    background: none;
 }
 
 .dc-select-menu{
