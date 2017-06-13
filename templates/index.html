@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Get Yourself Elected</title>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
-    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
+
 </head>
 <body class="application" id="bod">
 
@@ -17,24 +18,25 @@
        </div>
        <div>
            <ul class="nav navbar-nav">
-               <li><a href="#">The Campaign</a></li>
+               <li><a href="/campaign">The Campaign</a></li>
            </ul>
        </div>
    </div>
 </div>
 
+{% block content %}
 <div  id="outer" class="container-fluid">
 
    <div class="row">
 
-       <--! single column on small device-->
+       <!-- single column on small device -->
        <div class="col-sm-12">
 
            <!-- row 1 -->
            <div class="row">
 
                <!-- menu select -->
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Donation City
@@ -46,7 +48,8 @@
                 </div>
                 <!-- menu select -->
 
-               <div class="col-sm-6">
+               <!-- Donations -->
+               <div class="col-sm-4">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background">
                            Total Donations in USD
@@ -56,11 +59,24 @@
                        </div>
                    </div>
                 </div>
+                <!-- Donations -->
+
+               <div class="col-sm-4">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Total Number of Donations
+                       </div>
+                       <div class="chart-stage metric-background">
+                           <div id="number-projects-nd"></div>
+                       </div>
+                   </div>
+                </div>
            </div>
            <!-- row 1 close-->
 
            <!-- row 2 -->
            <div class="row">
+
                <!-- Resources -->
                <div class="col-sm-4">
                    <div class="chart-wrapper">
@@ -86,6 +102,32 @@
                    </div>
                </div>
                <!-- Funding Pie -->
+
+               <!-- Metro Pie -->
+               <div class="col-sm-2">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Area
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="metro-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- Metro Pie -->
+
+               <!-- Grade Pie -->
+               <div class="col-sm-2">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Grade Range
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="grade-level-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- Grade Pie -->
 
                 <!-- Primary Focus Subject -->
                 <div class="col-sm-2">
@@ -130,12 +172,14 @@
                    </div>
                 </div>
                 <!-- Poverty -->
+
            </div>
             <!-- row 3 close-->
 
            </div>
        </div>
    </div>
+{% endblock %}
 
 
 <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>

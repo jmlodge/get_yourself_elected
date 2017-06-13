@@ -35,8 +35,16 @@ function makeGraphs(error, projectsJson) {
     var fundingStatus = ndx.dimension(function (d) {
        return d["funding_status"];
     });
-    var primaryFocusSubDim =ndx.dimension(function (d) {
+    var primaryFocusSubDim = ndx.dimension(function (d) {
         return d["primary_focus_subject"];
+    });
+
+    var gradeDim = ndx.dimension(function (d) {
+       return d['grade_level']
+    });
+
+    var metroDim = ndx.dimension(function (d) {
+       return d['school_metro']
     });
 
     //calc metrics
@@ -44,12 +52,10 @@ function makeGraphs(error, projectsJson) {
     var numProjectsByResourceType = resourceTypeDim.group();
     var numProjectsByPovertyLevel = povertyLevelDim.group();
     var cityGroup = cityDim.group();
-    var totalDonationsByCity = cityDim.group().reduceSum(function (d) {
-       return d["total_donations"];
-    });
     var numProjectsByFundingStatus = fundingStatus.group();
     var numPrimaryFocusSub = primaryFocusSubDim.group();
-
+    var numGradeLevel = gradeDim.group();
+    var numMetro = metroDim.group();
 
     var all = ndx.groupAll();
     var totalDonations = ndx.groupAll().reduceSum(function (d) {
@@ -67,8 +73,9 @@ function makeGraphs(error, projectsJson) {
     var numberProjectsND = dc.numberDisplay("#number-projects-nd");
     var totalDonationsND = dc.numberDisplay("#total-donations-nd");
     var fundingStatusChart = dc.pieChart("#funding-chart");
-
     var primaryFocusSubChart = dc.pieChart("#pri-focus-chart");
+    var gradeLevelChart = dc.pieChart("#grade-level-chart");
+    var metroChart = dc.pieChart("#metro-chart");
 
     var selectField = dc.selectMenu('#menu-select')
         .dimension(cityDim)
@@ -114,8 +121,28 @@ function makeGraphs(error, projectsJson) {
         .group(numPrimaryFocusSub)
         .transitionDuration(600);
 
+     gradeLevelChart
+        .height(250)
+        .radius(90)
+        .innerRadius(40)
+        .colors(colourScale)
+        .transitionDuration(1500)
+        .dimension(gradeDim)
+        .group(numGradeLevel)
+        .transitionDuration(600);
+
+     metroChart
+        .height(250)
+        .radius(90)
+        .innerRadius(40)
+        .colors(colourScale)
+        .transitionDuration(1500)
+        .dimension(metroDim)
+        .group(numMetro)
+        .transitionDuration(600);
+
     resourceTypeChart
-        .width(300)
+        .width(550)
         .height(250)
         .colors(colourScale)
         .dimension(resourceTypeDim)
@@ -126,8 +153,8 @@ function makeGraphs(error, projectsJson) {
         .xAxis().ticks(4);
 
     povertyLevelChart
-        .width(300)
-        .height(250)
+        .width(700)
+        .height(330)
         .colors(colourScale)
         .dimension(povertyLevelDim)
         .group(numProjectsByPovertyLevel)

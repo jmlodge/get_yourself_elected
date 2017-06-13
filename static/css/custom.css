@@ -1,0 +1,30 @@
+/* Background */
+
+body{
+    background-image: url("/static/media/education-background.png");
+    background-size: cover;
+} 
+
+
+/* Layout */
+
+/* Charts */
+
+div.chart-stage.select-stage{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-stage{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.dc-select-menu{
+    width: 100%;
+}
+
