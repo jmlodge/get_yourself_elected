@@ -25,5 +25,104 @@
    </div>
 </div>
 
+<div  id="outer" class="container-fluid">
+
+   <div class="row">
+
+       <div class="col-sm-12">
+           <div class="row">
+
+               <!-- Time Chart -->
+               <div class="col-sm-6">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Number of Donations
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="time-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- menu select -->
+                <div class="col-sm-6">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">
+                            Donation City
+                        </div>
+                        <div class="chart-stage">
+                            <div id="menu-select"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu select -->
+               <div class="row">
+               <!-- Resources -->
+               <div class="col-sm-4">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Resources Type
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="resource-type-row-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- Resources -->
+
+               <!-- Funding Pie -->
+               <div class="col-sm-2">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Funding Status
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="funding-chart"></div>
+                       </div>
+                   </div>
+               </div>
+               <!-- Funding Pie -->
+
+                <!-- Primary Focus Subject -->
+                <div class="col-sm-2">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Primary Focus Subject
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="pri-focus-chart"></div>
+                       </div>
+                   </div>
+                </div>
+                <!-- Primary Focus Subject -->
+
+                <!-- Poverty -->
+                <div class="col-sm-4">
+                   <div class="chart-wrapper">
+                       <div class="chart-title title-background">
+                           Poverty Level
+                       </div>
+                       <div class="chart-stage chart-background">
+                           <div id="poverty-level-row-chart"></div>
+                       </div>
+                   </div>
+                </div>
+                <!-- Poverty -->
+           </div>
+
+           </div>
+       </div>
+   </div>
+
+
+<script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
+
+<script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+<script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+
 </body>
 </html>

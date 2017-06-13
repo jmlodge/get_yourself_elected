@@ -1,6 +1,3 @@
-/**
- * Created by Joseph on 23/01/2017.
- */
 queue()
     .defer(d3.json, "/donorsUS/projects")
     .await(makeGraphs);
@@ -32,9 +29,9 @@ function makeGraphs(error, projectsJson) {
     var cityDim = ndx.dimension(function (d) {
        return d["school_city"];
     });
-    //var totalDonationsDim = ndx.dimension(function (d) {
-    //   return d["total_donations"];
-    //});
+    var totalDonationsDim = ndx.dimension(function (d) {
+       return d["total_donations"];
+    });
     var fundingStatus = ndx.dimension(function (d) {
        return d["funding_status"];
     });
@@ -59,8 +56,6 @@ function makeGraphs(error, projectsJson) {
        return d["total_donations"];
     });
 
-    var max_state = totalDonationsByState.top(1)[0].value;
-
     //define values (to be used in charts)
     var minDate = dateDim.bottom(1)[0]["date_posted"];
     var maxDate = dateDim.top(1)[0]["date_posted"];
@@ -72,17 +67,14 @@ function makeGraphs(error, projectsJson) {
     var numberProjectsND = dc.numberDisplay("#number-projects-nd");
     var totalDonationsND = dc.numberDisplay("#total-donations-nd");
     var fundingStatusChart = dc.pieChart("#funding-chart");
-    var selectField = dc.selectMenu('#menu-select');
+
     var primaryFocusSubChart = dc.pieChart("#pri-focus-chart");
 
-    var colourScale = d3.scale.ordinal().range(["#ffe4b2", "#ffc966", "#ffa500", "#cc8400", "#996300"]);
-
-    selectField
+    var selectField = dc.selectMenu('#menu-select')
         .dimension(cityDim)
-        .group(cityGroup)
-        .title(function (d) {
-          return 'City: ' + d.key;
-        });
+        .group(cityGroup);
+
+    var colourScale = d3.scale.ordinal().range(["#ffe4b2", "#ffc966", "#ffa500", "#cc8400", "#996300"]);
 
     numberProjectsND
        .formatNumber(d3.format("d"))
@@ -121,7 +113,6 @@ function makeGraphs(error, projectsJson) {
         .dimension(primaryFocusSubDim)
         .group(numPrimaryFocusSub)
         .transitionDuration(600);
-
 
     resourceTypeChart
         .width(300)
