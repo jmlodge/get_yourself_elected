@@ -39,6 +39,8 @@ function makeGraphs(error, projectsJson) {
         return d["primary_focus_subject"];
     });
 
+    var literacyDim = primaryFocusSubDim.filter('Literacy');
+
     var gradeDim = ndx.dimension(function (d) {
        return d['grade_level']
     });
@@ -119,6 +121,7 @@ function makeGraphs(error, projectsJson) {
         .transitionDuration(1500)
         .dimension(primaryFocusSubDim)
         .group(numPrimaryFocusSub)
+        .dimension(literacyDim)
         .transitionDuration(600);
 
      gradeLevelChart
