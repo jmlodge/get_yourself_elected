@@ -8,9 +8,9 @@ function makeGraphs(error, projectsJson) {
     var dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
     var numberFormat = d3.format(",f");
     donorsUSProjects.forEach(function (d) {
-       d["date_posted"] = dateFormat.parse(d["date_posted"]);
-       d["date_posted"].setDate(1);
-       d["total_donations"] = +d["total_donations"];
+        d["date_posted"] = dateFormat.parse(d["date_posted"]);
+        d["date_posted"].setDate(1);
+        d["total_donations"] = +d["total_donations"];
     });
 
     //create crossfilter instance
@@ -21,19 +21,19 @@ function makeGraphs(error, projectsJson) {
         return d["date_posted"];
     });
     var resourceTypeDim = ndx.dimension(function (d) {
-       return d["resource_type"];
+        return d["resource_type"];
     });
     var povertyLevelDim = ndx.dimension(function (d) {
-       return d["poverty_level"];
+        return d["poverty_level"];
     });
     var cityDim = ndx.dimension(function (d) {
-       return d["school_city"];
+        return d["school_city"];
     });
     var totalDonationsDim = ndx.dimension(function (d) {
-       return d["total_donations"];
+        return d["total_donations"];
     });
     var fundingStatus = ndx.dimension(function (d) {
-       return d["funding_status"];
+        return d["funding_status"];
     });
     var primaryFocusSubDim = ndx.dimension(function (d) {
         return d["primary_focus_subject"];
@@ -42,11 +42,11 @@ function makeGraphs(error, projectsJson) {
     var literacyDim = primaryFocusSubDim.filter('Literacy');
 
     var gradeDim = ndx.dimension(function (d) {
-       return d['grade_level']
+        return d['grade_level']
     });
 
     var metroDim = ndx.dimension(function (d) {
-       return d['school_metro']
+        return d['school_metro']
     });
 
     //calc metrics
@@ -61,7 +61,7 @@ function makeGraphs(error, projectsJson) {
 
     var all = ndx.groupAll();
     var totalDonations = ndx.groupAll().reduceSum(function (d) {
-       return d["total_donations"];
+        return d["total_donations"];
     });
 
     //define values (to be used in charts)
@@ -84,21 +84,22 @@ function makeGraphs(error, projectsJson) {
         .group(cityGroup);
 
     var colourScale = d3.scale.ordinal().range(["#BED661", "#89E894", "#78D5E3", "#7AF5F5", "#34DDDD", "#93E2D5"]);
+    var pieWidth = document.getElementById('size-pie').offsetWidth;
 
     numberProjectsND
-       .formatNumber(d3.format("d"))
-       .valueAccessor(function (d) {
-           return d;
-       })
-       .group(all);
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+            return d;
+        })
+        .group(all);
 
     totalDonationsND
-       .formatNumber(d3.format("d"))
-       .valueAccessor(function (d) {
-           return d;
-       })
-       .group(totalDonations)
-       .formatNumber(d3.format(".3s"));
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+            return d;
+        })
+        .group(totalDonations)
+        .formatNumber(d3.format(".3s"));
 
     timeChart
         .width(800)
@@ -115,7 +116,7 @@ function makeGraphs(error, projectsJson) {
 
     primaryFocusSubChart
         .height(250)
-        .radius(90)
+        .radius((pieWidth / 2)-20)
         .innerRadius(40)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -124,7 +125,7 @@ function makeGraphs(error, projectsJson) {
         .dimension(literacyDim)
         .transitionDuration(600);
 
-     gradeLevelChart
+    gradeLevelChart
         .height(250)
         .radius(90)
         .innerRadius(40)
@@ -134,7 +135,7 @@ function makeGraphs(error, projectsJson) {
         .group(numGradeLevel)
         .transitionDuration(600);
 
-     metroChart
+    metroChart
         .height(250)
         .radius(90)
         .innerRadius(40)
@@ -150,7 +151,7 @@ function makeGraphs(error, projectsJson) {
         .colors(colourScale)
         .dimension(resourceTypeDim)
         .group(numProjectsByResourceType)
-        .ordering(function(d) {
+        .ordering(function (d) {
             return +d.value
         })
         .xAxis().ticks(4);
@@ -161,7 +162,7 @@ function makeGraphs(error, projectsJson) {
         .colors(colourScale)
         .dimension(povertyLevelDim)
         .group(numProjectsByPovertyLevel)
-        .ordering(function(d) {
+        .ordering(function (d) {
             return +d.value
         })
         .xAxis().ticks(4);
@@ -175,5 +176,23 @@ function makeGraphs(error, projectsJson) {
         .dimension(fundingStatus)
         .group(numProjectsByFundingStatus);
 
-   dc.renderAll();
+    dc.renderAll();
+
+
+    window.onresize = function (event) {
+        var newWidth = document.getElementById('size-pie').offsetWidth;
+        var windowWidth = $(window).width();
+
+        if (windowWidth < 768) {
+            primaryFocusSubChart.radius((newWidth/4)-20)
+            .transitionDuration(0)
+            .transitionDuration(0);
+        } else {
+            primaryFocusSubChart.radius((newWidth/2)-20)
+            .transitionDuration(0)
+            .transitionDuration(0);
+        }
+        dc.renderAll();
+    };
+
 }
