@@ -116,8 +116,8 @@ function makeGraphs(error, projectsJson) {
 
     primaryFocusSubChart
         .height(250)
-        .radius((pieWidth / 2)-20)
-        .innerRadius(40)
+        .radius((pieWidth / 2)-30)
+        .innerRadius(0)
         .colors(colourScale)
         .transitionDuration(1500)
         .dimension(primaryFocusSubDim)
@@ -127,7 +127,7 @@ function makeGraphs(error, projectsJson) {
 
     gradeLevelChart
         .height(250)
-        .radius(90)
+        .radius((pieWidth / 2)-30)
         .innerRadius(40)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -137,8 +137,8 @@ function makeGraphs(error, projectsJson) {
 
     metroChart
         .height(250)
-        .radius(90)
-        .innerRadius(40)
+        .radius((pieWidth / 2)-30)
+        .innerRadius(0)
         .colors(colourScale)
         .transitionDuration(1500)
         .dimension(metroDim)
@@ -169,7 +169,7 @@ function makeGraphs(error, projectsJson) {
 
     fundingStatusChart
         .height(250)
-        .radius(90)
+        .radius((pieWidth / 2)-30)
         .innerRadius(40)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -181,17 +181,32 @@ function makeGraphs(error, projectsJson) {
 
     window.onresize = function (event) {
         var newWidth = document.getElementById('size-pie').offsetWidth;
+        var newWidthBarBig = document.getElementById('size-bar-big').offsetWidth;
+        var newWidthSm = document.getElementById('size-bar-sm').offsetWidth;
         var windowWidth = $(window).width();
+        var newRadius = windowWidth < 768 ? newWidth/4 -30 : newWidth/2-30;
 
-        if (windowWidth < 768) {
-            primaryFocusSubChart.radius((newWidth/4)-20)
-            .transitionDuration(0)
+        primaryFocusSubChart.radius(newRadius)
             .transitionDuration(0);
-        } else {
-            primaryFocusSubChart.radius((newWidth/2)-20)
-            .transitionDuration(0)
+
+        fundingStatusChart.radius(newRadius)
             .transitionDuration(0);
-        }
+
+        metroChart.radius(newRadius)
+            .transitionDuration(0);
+
+        gradeLevelChart.radius(newRadius)
+            .transitionDuration(0);
+
+        timeChart.width(newWidthBarBig - 40)
+            .transitionDuration(0);
+
+        povertyLevelChart.width(newWidthBarBig - 40)
+            .transitionDuration(0);
+
+        resourceTypeChart.width(newWidthSm - 40)
+            .transitionDuration(0);
+
         dc.renderAll();
     };
 
