@@ -39,7 +39,7 @@ function makeGraphs(error, projectsJson) {
         return d["primary_focus_subject"];
     });
 
-    var literacyDim = primaryFocusSubDim.filter('Literacy');
+    //var literacyDim = primaryFocusSubDim.filter('Literacy');
 
     var gradeDim = ndx.dimension(function (d) {
         return d['grade_level']
@@ -116,18 +116,17 @@ function makeGraphs(error, projectsJson) {
 
     primaryFocusSubChart
         .height(250)
-        .radius((pieWidth / 2)-30)
+        .radius((pieWidth / 2) - 30)
         .innerRadius(0)
         .colors(colourScale)
         .transitionDuration(1500)
         .dimension(primaryFocusSubDim)
         .group(numPrimaryFocusSub)
-        .dimension(literacyDim)
         .transitionDuration(600);
 
     gradeLevelChart
         .height(250)
-        .radius((pieWidth / 2)-30)
+        .radius((pieWidth / 2) - 30)
         .innerRadius(40)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -137,7 +136,7 @@ function makeGraphs(error, projectsJson) {
 
     metroChart
         .height(250)
-        .radius((pieWidth / 2)-30)
+        .radius((pieWidth / 2) - 30)
         .innerRadius(0)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -169,7 +168,7 @@ function makeGraphs(error, projectsJson) {
 
     fundingStatusChart
         .height(250)
-        .radius((pieWidth / 2)-30)
+        .radius((pieWidth / 2) - 30)
         .innerRadius(40)
         .colors(colourScale)
         .transitionDuration(1500)
@@ -184,7 +183,7 @@ function makeGraphs(error, projectsJson) {
         var newWidthBarBig = document.getElementById('size-bar-big').offsetWidth;
         var newWidthSm = document.getElementById('size-bar-sm').offsetWidth;
         var windowWidth = $(window).width();
-        var newRadius = windowWidth < 768 ? newWidth/4 -30 : newWidth/2-30;
+        var newRadius = windowWidth < 768 ? newWidth / 4 - 30 : newWidth / 2 - 30;
 
         primaryFocusSubChart.radius(newRadius)
             .transitionDuration(0);
@@ -210,31 +209,52 @@ function makeGraphs(error, projectsJson) {
         dc.renderAll();
     };
 
+
+    $(function () {
+        $('.story-message').on('click', function () {
+
+            $('.selected').removeClass('selected');
+            $('.pop').hide();
+            $(this).addClass('selected');
+            var idName = $(this).attr('id');
+            switch (idName) {
+                case 'resource':
+                    $('.pop1').slideFadeToggle();
+                    break;
+                case 'funding':
+                    $('.pop2').slideFadeToggle();
+                    break;
+                case 'area':
+                    $('.pop3').slideFadeToggle();
+                    break;
+                case 'grade':
+                    $('.pop4').slideFadeToggle();
+                    break;
+                case 'subject':
+                    $('.pop5').slideFadeToggle();
+                    var literacyDim = primaryFocusSubDim.filter('Literacy');
+                    primaryFocusSubChart.dimension(literacyDim);
+                    dc.renderAll();
+                    break;
+                case 'year':
+                    $('.pop6').slideFadeToggle();
+                    break;
+                case 'poverty':
+                    $('.pop7').slideFadeToggle();
+                    break;
+
+            }
+            return false;
+        });
+
+        $('.close').on('click', function () {
+            deselect($('#contact'));
+            return false;
+        });
+    });
+
+    $.fn.slideFadeToggle = function (easing, callback) {
+        return this.animate({opacity: 'toggle', height: 'toggle'}, 'fast', easing, callback);
+    };
+
 }
-
-function deselect(e) {
-  $('.pop').slideFadeToggle(function() {
-    e.removeClass('selected');
-  });
-}
-
-$(function() {
-  $('.message-resource').on('click', function() {
-    if($(this).hasClass('selected')) {
-      deselect($(this));
-    } else {
-      $(this).addClass('selected');
-      $('.pop').slideFadeToggle();
-    }
-    return false;
-  });
-
-  $('.close').on('click', function() {
-    deselect($('#contact'));
-    return false;
-  });
-});
-
-$.fn.slideFadeToggle = function(easing, callback) {
-  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
-};
