@@ -39,8 +39,6 @@ function makeGraphs(error, projectsJson) {
         return d["primary_focus_subject"];
     });
 
-    //var literacyDim = primaryFocusSubDim.filter('Literacy');
-
     var gradeDim = ndx.dimension(function (d) {
         return d['grade_level']
     });
@@ -220,15 +218,27 @@ function makeGraphs(error, projectsJson) {
             switch (idName) {
                 case 'resource':
                     $('.pop1').slideFadeToggle();
+                    var suppliesDim = resourceTypeDim.filter('Supplies');
+                    resourceTypeChart.dimension(suppliesDim);
+                    dc.renderAll();
                     break;
                 case 'funding':
                     $('.pop2').slideFadeToggle();
+                    var expDim = fundingStatus.filter('expired');
+                    fundingStatusChart.dimension(expDim);
+                    dc.renderAll();
                     break;
                 case 'area':
                     $('.pop3').slideFadeToggle();
+                    var ruralDim = metroDim.filter('rural');
+                    metroChart.dimension(ruralDim);
+                    dc.renderAll();
                     break;
                 case 'grade':
                     $('.pop4').slideFadeToggle();
+                    var lowGradeDim = gradeDim.filter('Grades 6-8');
+                    gradeLevelChart.dimension(lowGradeDim);
+                    dc.renderAll();
                     break;
                 case 'subject':
                     $('.pop5').slideFadeToggle();
@@ -247,11 +257,26 @@ function makeGraphs(error, projectsJson) {
             return false;
         });
 
-        $('.close').on('click', function () {
-            deselect($('#contact'));
-            return false;
-        });
+
     });
+
+    $('.close-message').on('click', function () {
+            $('.selected').removeClass('selected');
+            $('.pop').hide();
+            var resourceTypeDimReset = resourceTypeDim.filter();
+            var fundingStatusReset = fundingStatus.filter();
+            var metroDimReset = metroDim.filter();
+            var primaryFocusSubDimReset = primaryFocusSubDim.filter();
+            var gradeDimReset = gradeDim.filter();
+            resourceTypeChart.dimension(resourceTypeDimReset);
+            fundingStatusChart.dimension(fundingStatusReset);
+            metroChart.dimension(metroDimReset);
+            primaryFocusSubChart.dimension(primaryFocusSubDimReset);
+            gradeLevelChart.dimension(gradeDimReset);
+
+            dc.renderAll();
+
+        });
 
     $.fn.slideFadeToggle = function (easing, callback) {
         return this.animate({opacity: 'toggle', height: 'toggle'}, 'fast', easing, callback);
