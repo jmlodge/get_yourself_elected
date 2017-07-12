@@ -102,7 +102,7 @@ function makeGraphs(error, projectsJson) {
     timeChart
         .width(800)
         .height(330)
-        .colors(colourScale)
+        .colors("#34DDDD")
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dateDim)
         .group(numProjectsByDate)
@@ -210,7 +210,7 @@ function makeGraphs(error, projectsJson) {
 
     $(function () {
         $('.story-message').on('click', function () {
-
+            restCharts();
             $('.selected').removeClass('selected');
             $('.pop').hide();
             $(this).addClass('selected');
@@ -260,23 +260,27 @@ function makeGraphs(error, projectsJson) {
 
     });
 
-    $('.close-message').on('click', function () {
-            $('.selected').removeClass('selected');
-            $('.pop').hide();
-            var resourceTypeDimReset = resourceTypeDim.filter();
-            var fundingStatusReset = fundingStatus.filter();
-            var metroDimReset = metroDim.filter();
-            var primaryFocusSubDimReset = primaryFocusSubDim.filter();
-            var gradeDimReset = gradeDim.filter();
-            resourceTypeChart.dimension(resourceTypeDimReset);
-            fundingStatusChart.dimension(fundingStatusReset);
-            metroChart.dimension(metroDimReset);
-            primaryFocusSubChart.dimension(primaryFocusSubDimReset);
-            gradeLevelChart.dimension(gradeDimReset);
+    $('.close-message').on('click', restCharts);
 
-            dc.renderAll();
+    function restCharts() {
 
-        });
+        $('.selected').removeClass('selected');
+        $('.pop').hide();
+        var resourceTypeDimReset = resourceTypeDim.filter();
+        var fundingStatusReset = fundingStatus.filter();
+        var metroDimReset = metroDim.filter();
+        var primaryFocusSubDimReset = primaryFocusSubDim.filter();
+        var gradeDimReset = gradeDim.filter();
+        resourceTypeChart.dimension(resourceTypeDimReset);
+        fundingStatusChart.dimension(fundingStatusReset);
+        metroChart.dimension(metroDimReset);
+        primaryFocusSubChart.dimension(primaryFocusSubDimReset);
+        gradeLevelChart.dimension(gradeDimReset);
+
+        dc.renderAll();
+
+    }
+
 
     $.fn.slideFadeToggle = function (easing, callback) {
         return this.animate({opacity: 'toggle', height: 'toggle'}, 'fast', easing, callback);
