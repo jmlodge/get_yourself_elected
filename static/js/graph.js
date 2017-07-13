@@ -213,6 +213,8 @@ function makeGraphs(error, projectsJson) {
             restCharts();
             $('.selected').removeClass('selected');
             $('.pop').hide();
+            $('.all-charts').show();
+            $('.message-title').hide();
             $(this).addClass('selected');
             var idName = $(this).attr('id');
             switch (idName) {
@@ -220,30 +222,40 @@ function makeGraphs(error, projectsJson) {
                     $('.pop1').slideFadeToggle();
                     var suppliesDim = resourceTypeDim.filter('Supplies');
                     resourceTypeChart.dimension(suppliesDim);
+                    $('#resource-type-row-chart').hide();
+                    $('#supplies').show();
                     dc.renderAll();
                     break;
                 case 'funding':
                     $('.pop2').slideFadeToggle();
                     var expDim = fundingStatus.filter('expired');
                     fundingStatusChart.dimension(expDim);
+                    $('#funding-chart').hide();
+                    $('#expired').show();
                     dc.renderAll();
                     break;
                 case 'area':
                     $('.pop3').slideFadeToggle();
                     var ruralDim = metroDim.filter('rural');
                     metroChart.dimension(ruralDim);
+                    $('#metro-chart').hide();
+                    $('#rural').show();
                     dc.renderAll();
                     break;
                 case 'grade':
                     $('.pop4').slideFadeToggle();
                     var lowGradeDim = gradeDim.filter('Grades 6-8');
                     gradeLevelChart.dimension(lowGradeDim);
+                    $('#grade-level-chart').hide();
+                    $('#grade-6-8').show();
                     dc.renderAll();
                     break;
                 case 'subject':
                     $('.pop5').slideFadeToggle();
                     var literacyDim = primaryFocusSubDim.filter('Literacy');
                     primaryFocusSubChart.dimension(literacyDim);
+                    $('#pri-focus-chart').hide();
+                    $('#literacy').show();
                     dc.renderAll();
                     break;
                 case 'year':
@@ -266,6 +278,8 @@ function makeGraphs(error, projectsJson) {
 
         $('.selected').removeClass('selected');
         $('.pop').hide();
+        $('.all-charts').show();
+        $('.message-title').hide();
         var resourceTypeDimReset = resourceTypeDim.filter();
         var fundingStatusReset = fundingStatus.filter();
         var metroDimReset = metroDim.filter();
@@ -283,6 +297,8 @@ function makeGraphs(error, projectsJson) {
 
 
     $.fn.slideFadeToggle = function (easing, callback) {
+        $('.pop').css('left', event.pageX);
+        $('.pop').css('right', event.pageY);
         return this.animate({opacity: 'toggle', height: 'toggle'}, 'fast', easing, callback);
     };
 

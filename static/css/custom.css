@@ -36,22 +36,22 @@ div.chart-stage.chart-background{
 /*messages*/
 
 div.selected {
-    background-color:#1F75CC;
-    color:white;
-    z-index:100;
+    background-color: #1F75CC;
+    color: white;
+    z-index: 100;
 }
 
 .messagepop {
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
     border:1px solid #999999;
-    cursor:default;
-    display:none;
+    cursor: default;
+    display: none;
     margin-top: 15px;
     margin-left: 15px;
-    position:absolute;
-    text-align:left;
-    width:394px;
-    z-index:50;
+    position: absolute;
+    text-align: left;
+    width: 394px;
+    z-index: 50;
     padding: 25px 25px 20px;
 }
 
@@ -59,4 +59,8 @@ div.selected {
     border-bottom: 1px solid #EFEFEF;
     margin: 8px 0;
     padding-bottom: 8px;
+}
+
+.message-title {
+    display: none;
 }
