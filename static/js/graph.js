@@ -183,6 +183,10 @@ function makeGraphs(error, projectsJson) {
         var windowWidth = $(window).width();
         var newRadius = windowWidth < 1200 ? newWidth / 3 - 30 : newWidth / 2 - 30;
 
+        if (windowWidth > 480 && windowWidth < 769){
+            newRadius = newWidth / 5 -30;
+        }
+
         primaryFocusSubChart.radius(newRadius)
             .transitionDuration(0);
 
