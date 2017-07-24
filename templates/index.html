@@ -12,6 +12,7 @@
 </head>
 <body class="application" id="bod">
 
+<!-- Nav -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="container-fluid">
        <div class="navbar-header">
@@ -27,20 +28,19 @@
        </div>
    </div>
 </div>
+<!-- Nav End -->
+
 
 {% block content %}
 <div  id="outer" class="container-fluid">
 
    <div class="row">
 
-       <!-- single column on small device -->
-       <div class="col-sm-12">
-
            <!-- row 1 -->
            <div class="row">
 
                <!-- menu select -->
-                <div class="col-sm-4">
+                <div class="col-lg-4 col-md-12">
                     <div class="chart-wrapper">
                         <div class="chart-title">
                             Donation City
@@ -53,7 +53,7 @@
                 <!-- menu select -->
 
                <!-- Donations -->
-               <div class="col-sm-4">
+               <div class="col-lg-4 col-md-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background">
                            Total Donations in USD
@@ -65,7 +65,7 @@
                 </div>
                 <!-- Donations -->
 
-               <div class="col-sm-4">
+               <div class="col-lg-4 col-md-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background">
                            Total Number of Donations
@@ -82,7 +82,7 @@
            <div class="row">
 
                <!-- Resources -->
-               <div class="col-sm-4">
+               <div class="col-lg-4 col-md-8 col-sm-12">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="resource">
                            Resources Type
@@ -102,7 +102,7 @@
                <!-- Resources -->
 
                <!-- Funding Pie -->
-               <div class="col-sm-2">
+               <div class="col-lg-2 col-md-4 col-sm-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="funding">
                            Funding Status
@@ -122,7 +122,7 @@
                <!-- Funding Pie -->
 
                <!-- Metro Pie -->
-               <div class="col-sm-2">
+               <div class="col-lg-2 col-md-4 col-sm-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="area">
                            Area
@@ -142,7 +142,7 @@
                <!-- Metro Pie -->
 
                <!-- Grade Pie -->
-               <div class="col-sm-2">
+               <div class="col-lg-2 col-md-4 col-sm-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="grade">
                            Grade Range
@@ -162,7 +162,7 @@
                <!-- Grade Pie -->
 
                 <!-- Primary Focus Subject -->
-                <div class="col-sm-2">
+                <div class="col-lg-2 col-md-4 col-sm-6">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="subject">
                            Primary Focus Subject
@@ -187,7 +187,7 @@
            <div class="row">
 
                 <!-- Time Chart -->
-               <div class="col-sm-6">
+               <div class="col-lg-6 col-md-12">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="year">
                            Number of Donations per Year
@@ -204,7 +204,7 @@
                <!-- Time Chart -->
 
                 <!-- Poverty -->
-                <div class="col-sm-6">
+                <div class="col-lg-6 col-md-12">
                    <div class="chart-wrapper">
                        <div class="chart-title title-background story-message" id="poverty">
                            Poverty Level
@@ -222,8 +222,6 @@
 
            </div>
             <!-- row 3 close-->
-
-           </div>
    </div>
 </div>
 

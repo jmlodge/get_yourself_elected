@@ -10,18 +10,23 @@ body{
 
 /* Charts */
 
-div.chart-stage.select-stage{
+#outer {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+div.chart-stage.select-stage {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 }
 
-div.chart-stage.chart-background{
+div.chart-stage.chart-background {
     background: rgba(28, 99, 42, 0.3);
 }
 
-.chart-stage{
+.chart-stage {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -29,7 +34,7 @@ div.chart-stage.chart-background{
     background: none;
 }
 
-.dc-select-menu{
+.dc-select-menu {
     width: 100%;
 }
 

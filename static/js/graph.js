@@ -181,7 +181,7 @@ function makeGraphs(error, projectsJson) {
         var newWidthBarBig = document.getElementById('size-bar-big').offsetWidth;
         var newWidthSm = document.getElementById('size-bar-sm').offsetWidth;
         var windowWidth = $(window).width();
-        var newRadius = windowWidth < 768 ? newWidth / 4 - 30 : newWidth / 2 - 30;
+        var newRadius = windowWidth < 1200 ? newWidth / 3 - 30 : newWidth / 2 - 30;
 
         primaryFocusSubChart.radius(newRadius)
             .transitionDuration(0);
@@ -304,4 +304,3 @@ function makeGraphs(error, projectsJson) {
 
 }
 
-// just a test
